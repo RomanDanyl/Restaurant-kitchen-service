@@ -11,8 +11,10 @@ class DishType(models.Model):
 
 
 class Cook(AbstractUser):
+    specialties = models.ManyToManyField(DishType, related_name="cooks", blank=True)
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        specialties_list = ", ".join([specialty.name for specialty in self.specialties.all()])
+        return f"{self.first_name} {self.last_name}\n{specialties_list}"
 
 
 class Dish(models.Model):

@@ -31,6 +31,11 @@ class DishTypeListView(generic.ListView):
     model = DishType
 
 
+class DishTypeDetailView(generic.DetailView):
+    model = DishType
+    queryset = DishType.objects.all().prefetch_related("dishes")
+
+
 class DishTypeCreateView(generic.CreateView):
     model = DishType
     success_url = reverse_lazy("kitchen:dish-type-list")
@@ -44,3 +49,8 @@ class DishTypeUpdateView(generic.UpdateView):
 class DishTypeDeleteView(generic.DeleteView):
     model = DishType
     success_url = reverse_lazy("kitchen:dish-type-list")
+
+
+class CookListView(generic.ListView):
+    model = Cook
+    queryset = Cook.objects.all().prefetch_related("specialties")

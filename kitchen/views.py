@@ -1,11 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views import generic
 
 from kitchen.models import Cook, Dish, DishType
 
 
-@login_required
+#@login_required
 def index(request):
     """View function for home page of site."""
 
@@ -23,3 +25,22 @@ def index(request):
         "num_dish_types": num_dish_types,
     }
     return render(request, "kitchen/index.html", context=context)
+
+
+class DishTypeListView(generic.ListView):
+    model = DishType
+
+
+class DishTypeCreateView(generic.CreateView):
+    model = DishType
+    success_url = reverse_lazy("kitchen:dish-type-list")
+
+
+class DishTypeUpdateView(generic.UpdateView):
+    model = DishType
+    success_url = reverse_lazy("kitchen:dish-type-list")
+
+
+class DishTypeDeleteView(generic.DeleteView):
+    model = DishType
+    success_url = reverse_lazy("kitchen:dish-type-list")

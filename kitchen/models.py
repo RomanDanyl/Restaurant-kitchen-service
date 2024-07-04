@@ -25,8 +25,8 @@ class Dish(models.Model):
     name = models.CharField(max_length=155)
     description = models.TextField()
     price = models.DecimalField(max_digits=7, decimal_places=2)
-    dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE, related_name="dish_types")
-    cooks = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="cooks")
+    dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE, related_name="dishes")
+    cooks = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="cooked_dishes")
 
     def __str__(self):
         return f"{self.dish_type.name}, {self.name}, {self.price}\n{self.description}"

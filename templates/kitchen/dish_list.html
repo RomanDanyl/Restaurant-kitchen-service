@@ -4,7 +4,10 @@
   {% if dish_list %}
     <ul>
       {% for dish in dish_list %}
-        <li>{{ dish.name }}</li>
+        <li>
+          {{ dish.name }} ({{ dish.price }})
+          <p>{{ dish.description }}</p>
+        </li>
       {% endfor %}
     </ul>
   {% else %}

@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 
 class DishType(models.Model):
@@ -19,6 +20,9 @@ class Cook(AbstractUser):
     def __str__(self):
         specialties_list = ", ".join([specialty.name for specialty in self.specialties.all()])
         return f"{self.first_name} {self.last_name}\n{specialties_list}"
+
+    def get_absolute_url(self):
+        return reverse("kitchen:cook-detail", kwargs={"pk": self.pk})
 
 
 class Dish(models.Model):

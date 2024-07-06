@@ -5,6 +5,8 @@
     <ul>
       {% for dish in dish_list %}
         <li>
+          <strong>{{ dish.dish_type.name }}</strong>
+          <br>
           {{ dish.name }} ({{ dish.price }})
           <p>{{ dish.description }}</p>
           <p>{% if dish.cooks.all %}

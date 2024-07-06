@@ -57,7 +57,7 @@ class DishTypeDeleteView(generic.DeleteView):
 
 class CookListView(generic.ListView):
     model = Cook
-    queryset = Cook.objects.all().select_related("specialties")
+    queryset = Cook.objects.prefetch_related("specialties")
 
 
 class CookCreateView(generic.CreateView):
@@ -79,7 +79,7 @@ class CookDeleteView(generic.DeleteView):
 class DishListView(generic.ListView):
     model = Dish
     paginate_by = 10
-    queryset = Dish.objects.prefetch_related("cooks")
+    queryset = Dish.objects.select_related("dish_type").prefetch_related("cooks")
 
 
 class DishCreateView(generic.CreateView):

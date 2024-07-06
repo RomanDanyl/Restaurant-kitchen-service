@@ -79,6 +79,7 @@ class CookDeleteView(generic.DeleteView):
 class DishListView(generic.ListView):
     model = Dish
     paginate_by = 10
+    queryset = Dish.objects.prefetch_related("cooks")
 
 
 class DishCreateView(generic.CreateView):

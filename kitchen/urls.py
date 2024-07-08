@@ -40,7 +40,7 @@ urlpatterns = [
     path(
         "dish-types/<int:pk>/delete",
         DishTypeDeleteView.as_view(),
-        name="dish-type-update"
+        name="dish-type-delete"
     ),
     path(
         "cooks/create",

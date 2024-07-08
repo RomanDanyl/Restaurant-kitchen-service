@@ -7,11 +7,37 @@
     </a>
   </h1>
   {% if dish_type_list %}
-    <ul>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+
       {% for dish_type in dish_type_list %}
-        <li>{{ dish_type.name }}</li>
+        <tr>
+          <td>
+              {{ dish_type.id }}
+          </td>
+          <td>
+              {{ dish_type.name }}
+          </td>
+          <td>
+              <a href="{% url 'kitchen:dish-type-update' pk=dish_type.id %}">
+                Update
+              </a>
+            </td>
+            <td>
+              <a style="color: red"
+                href="{% url 'kitchen:dish-type-delete' pk=dish_type.id %}">
+                Delete
+              </a>
+            </td>
+        </tr>
       {% endfor %}
-    </ul>
+    </table>
+
   {% else %}
     <p>There are no dish types</p>
   {% endif %}

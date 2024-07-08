@@ -24,6 +24,13 @@
               There are not cooks.
             {% endif %}
           </p>
+          <a href="{% url 'kitchen:dish-update' pk=dish.id %}">
+            Update
+          </a>
+          <a style="color: red"
+             href="{% url 'kitchen:dish-delete' pk=dish.id %}">
+            Delete
+          </a>
         </li>
       {% endfor %}
     </ul>

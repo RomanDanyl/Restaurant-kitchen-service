@@ -88,6 +88,8 @@ class DishListView(generic.ListView):
 
 class DishCreateView(generic.CreateView):
     model = Dish
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen:dish-list")
 
 
 class DishDetailView(generic.DetailView):
@@ -96,7 +98,10 @@ class DishDetailView(generic.DetailView):
 
 class DishUpdateView(generic.UpdateView):
     model = Dish
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen:dish-list")
 
 
 class DishDeleteView(generic.DeleteView):
     model = Dish
+    success_url = reverse_lazy("kitchen:dish-list")

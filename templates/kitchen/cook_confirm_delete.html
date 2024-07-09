@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <p>Delete this dish?</p>
-  <p>{{ dish.dish_type }}, {{ dish.name }}</p>
+  <p>Delete this cook?</p>
+  <p>{{ cook.first_name }}, {{ cook.last_name }}</p>
   
   <form action="" method="post">
     {% csrf_token %}
 
     <input type="submit" value="Yes" class="btn btn-danger">
-    <a href="{% url 'kitchen:dish-list' %}" class="btn btn-secondary">Cancel</a>
+    <a href="{% url 'kitchen:cook-list' %}" class="btn btn-secondary">Cancel</a>
   </form>
 {% endblock %}

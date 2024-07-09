@@ -59,7 +59,7 @@ urlpatterns = [
         name="cook-update"
     ),
     path("cooks/<int:pk>/delete",
-         CookDeleteView.as_view,
+         CookDeleteView.as_view(),
          name="cook-delete"
          ),
     path("dishes/", DishListView.as_view(), name="dish-list"),

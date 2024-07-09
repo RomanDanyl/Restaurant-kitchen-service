@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Remove this type of food? All dishes of this type will also be removed</h1>
+  <p>Remove this type of food?</p>
+  <p><i>All dishes of this type will also be removed</i></p>
+  <p>{{ dishtype.name }}:</p>
   <form action="" method="post">
     {% csrf_token %}
 

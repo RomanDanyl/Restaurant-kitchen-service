@@ -6,6 +6,9 @@
       Create
     </a>
   </h1>
+  {% block searching %}
+    {% include "includes/searching.html" %}
+  {% endblock %}  
   {% if dish_list %}
     <ul>
       {% for dish in dish_list %}

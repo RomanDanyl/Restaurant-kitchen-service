@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from kitchen.forms import CookCreationForm
+from kitchen.forms import CookCreationForm, DishCreationForm, DishSearchForm, CookSearchForm
 from kitchen.models import Cook, Dish, DishType
 
 
@@ -32,6 +32,21 @@ class DishTypeListView(generic.ListView):
     model = DishType
     template_name = "kitchen/dish_type_list.html"
     context_object_name = "dish_type_list"
+    queryset = DishType.objects.all()
+
+    def get_context_data(self, object_list=None, **kwargs):
+        context = super(DishTypeListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = DishSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    def get_queryset(self):
+        name = self.request.GET.get("name")
+        if name:
+            return self.queryset.filter(name__icontains=name)
+        return self.queryset
 
 
 class DishTypeDetailView(generic.DetailView):
@@ -64,6 +79,20 @@ class CookListView(generic.ListView):
     model = Cook
     queryset = Cook.objects.prefetch_related("specialties")
 
+    def get_context_data(self, object_list=None, **kwargs):
+        context = super(CookListView, self).get_context_data(**kwargs)
+        username = self.request.GET.get("username", "")
+        context["search_form"] = CookSearchForm(
+            initial={"username": username}
+        )
+        return context
+
+    def get_queryset(self):
+        username = self.request.GET.get("username")
+        if username:
+            return self.queryset.filter(username__icontains=username)
+        return self.queryset
+
 
 class CookCreateView(generic.CreateView):
     model = Cook
@@ -87,12 +116,28 @@ class CookDeleteView(generic.DeleteView):
 class DishListView(generic.ListView):
     model = Dish
     paginate_by = 3
-    queryset = Dish.objects.select_related("dish_type").prefetch_related("cooks")
+    queryset = Dish.objects.select_related(
+        "dish_type"
+    ).prefetch_related("cooks")
+
+    def get_context_data(self, object_list=None, **kwargs):
+        context = super(DishListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = DishSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    def get_queryset(self):
+        name = self.request.GET.get("name")
+        if name:
+            return self.queryset.filter(name__icontains=name)
+        return self.queryset
 
 
 class DishCreateView(generic.CreateView):
     model = Dish
-    fields = "__all__"
+    form_class = DishCreationForm
     success_url = reverse_lazy("kitchen:dish-list")
 
 
@@ -102,7 +147,7 @@ class DishDetailView(generic.DetailView):
 
 class DishUpdateView(generic.UpdateView):
     model = Dish
-    fields = "__all__"
+    form_class = DishCreationForm
     success_url = reverse_lazy("kitchen:dish-list")
 
 

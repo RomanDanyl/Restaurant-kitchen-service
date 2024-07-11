@@ -15,7 +15,6 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Details</th>
         <th>Update</th>
         <th>Delete</th>
       </tr>
@@ -23,27 +22,23 @@
       {% for dish_type in dish_type_list %}
         <tr>
           <td>
+            <a href="{% url 'kitchen:dish-type-detail' pk=dish_type.id %}" class="inlineviewlink">
               {{ dish_type.id }}
+            </a>
           </td>
           <td>
               {{ dish_type.name }}
           </td>
           <td>
-            <a href="{% url 'kitchen:dish-type-detail' pk=dish_type.id %}" class="btn btn-info">
-              Show Details
+            <a href="{% url 'kitchen:dish-type-update' pk=dish_type.id %}" class="btn btn-secondary">
+              Update
             </a>
           </td>
           <td>
-              <a href="{% url 'kitchen:dish-type-update' pk=dish_type.id %}">
-                Update
-              </a>
-            </td>
-            <td>
-              <a style="color: red"
-                href="{% url 'kitchen:dish-type-delete' pk=dish_type.id %}">
-                Delete
-              </a>
-            </td>
+            <a href="{% url 'kitchen:dish-type-delete' pk=dish_type.id %}" class="btn btn-danger">
+              Delete
+            </a>
+          </td>
         </tr>
       {% endfor %}
     </table>

@@ -29,9 +29,9 @@
         <td>{{ cook.last_name }}</td>
         <td>
           {% if cook.specialties.all %}
-            {% for specialties in cook.specialties.all %}
-              {{ specialties.name }}
-            {% endfor %}
+            {% with cook.specialties.all as specialties %}
+              {{ specialties|join:", " }}
+            {% endwith %}
           {% else %}
             -
           {% endif %}    

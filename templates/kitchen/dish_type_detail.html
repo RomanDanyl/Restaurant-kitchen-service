@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>{{ dish_type.name }} details:</h1>
+  <p><strong>ID:</strong> {{ dish_type.id }}</p>
+  <p><strong>Name:</strong> {{ dish_type.name }}</p>
+
+  <h2>Cooks</h2>
+  <ul>
+    {% for cook in dish_type.specialty_cooks.all %}
+      <li>{{ cook.first_name }} {{ cook.last_name }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Dishes</h2>
+  <ul>
+    {% for dish in dish_type.dishes.all %}
+      <li>{{ dish.name }}</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'kitchen:dish-type-list' %}" class="btn btn-secondary">Back to list</a>
+{% endblock %}

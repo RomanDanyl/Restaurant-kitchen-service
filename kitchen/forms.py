@@ -27,7 +27,9 @@ class CookCreationForm(UserCreationForm):
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
-        if User.objects.exclude(pk=self.instance.pk).filter(username=username).exists():
+        if User.objects.exclude(
+                pk=self.instance.pk
+        ).filter(username=username).exists():
             raise forms.ValidationError('Username already exists.')
         return username
 

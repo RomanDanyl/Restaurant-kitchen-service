@@ -4,12 +4,17 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from kitchen.forms import CookCreationForm, DishCreationForm, DishSearchForm, CookSearchForm
+from kitchen.forms import (
+    CookCreationForm,
+    DishCreationForm,
+    DishSearchForm,
+    CookSearchForm
+)
 from kitchen.models import Cook, Dish, DishType
 
 
-#@login_required
-def index(request):
+@login_required
+def index(request) -> HttpResponse:
     """View function for home page of site."""
 
     num_visits = request.session.get("num_visits", 0)
@@ -51,9 +56,11 @@ class DishTypeListView(generic.ListView):
 
 class DishTypeDetailView(generic.DetailView):
     model = DishType
+    context_object_name = "dish_type"
+    template_name = "kitchen/dish_type_detail.html"
 
     def get_queryset(self):
-        return DishType.objects.select_related("dishes").all()
+        return DishType.objects.prefetch_related("specialty_cooks", "dishes")
 
 
 class DishTypeCreateView(generic.CreateView):
@@ -79,7 +86,9 @@ class CookListView(generic.ListView):
     model = Cook
 
     def get_context_data(self, object_list=None, **kwargs):
-        context = super(CookListView, self).get_context_data(**kwargs)
+        context = super(
+            CookListView, self
+        ).get_context_data(**kwargs)
         username = self.request.GET.get("username", "")
         context["search_form"] = CookSearchForm(
             initial={"username": username}

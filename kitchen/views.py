@@ -32,7 +32,6 @@ class DishTypeListView(generic.ListView):
     model = DishType
     template_name = "kitchen/dish_type_list.html"
     context_object_name = "dish_type_list"
-    queryset = DishType.objects.all()
 
     def get_context_data(self, object_list=None, **kwargs):
         context = super(DishTypeListView, self).get_context_data(**kwargs)
@@ -43,10 +42,11 @@ class DishTypeListView(generic.ListView):
         return context
 
     def get_queryset(self):
+        queryset = DishType.objects.all()
         name = self.request.GET.get("name")
         if name:
-            return self.queryset.filter(name__icontains=name)
-        return self.queryset
+            return queryset.filter(name__icontains=name)
+        return queryset
 
 
 class DishTypeDetailView(generic.DetailView):
@@ -77,7 +77,6 @@ class DishTypeDeleteView(generic.DeleteView):
 
 class CookListView(generic.ListView):
     model = Cook
-    queryset = Cook.objects.prefetch_related("specialties")
 
     def get_context_data(self, object_list=None, **kwargs):
         context = super(CookListView, self).get_context_data(**kwargs)
@@ -88,10 +87,11 @@ class CookListView(generic.ListView):
         return context
 
     def get_queryset(self):
+        queryset = Cook.objects.prefetch_related("specialties")
         username = self.request.GET.get("username")
         if username:
-            return self.queryset.filter(username__icontains=username)
-        return self.queryset
+            return queryset.filter(username__icontains=username)
+        return queryset
 
 
 class CookCreateView(generic.CreateView):
@@ -116,9 +116,6 @@ class CookDeleteView(generic.DeleteView):
 class DishListView(generic.ListView):
     model = Dish
     paginate_by = 3
-    queryset = Dish.objects.select_related(
-        "dish_type"
-    ).prefetch_related("cooks")
 
     def get_context_data(self, object_list=None, **kwargs):
         context = super(DishListView, self).get_context_data(**kwargs)
@@ -129,10 +126,13 @@ class DishListView(generic.ListView):
         return context
 
     def get_queryset(self):
+        queryset = Dish.objects.select_related(
+            "dish_type"
+        ).prefetch_related("cooks")
         name = self.request.GET.get("name")
         if name:
-            return self.queryset.filter(name__icontains=name)
-        return self.queryset
+            return queryset.filter(name__icontains=name)
+        return queryset
 
 
 class DishCreateView(generic.CreateView):

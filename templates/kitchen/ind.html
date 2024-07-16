@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Kitchen home</h1>
+  <p>Welcome to the best kitchen ever</p>
+  <h3>We provide you:</h3>
+  <ul>
+    <li>The service of {{ num_cooks }} top chefs</li>
+    <li>{{ num_dish_types }} best type of dish!</li>
+    <li>{{ num_dishes }} excellent dish!</li>
+  </ul>
+
+  <p>You have visited this page
+      {{ num_visits }} time{{ num_visits|pluralize }}.
+  </p>
+{% endblock %}

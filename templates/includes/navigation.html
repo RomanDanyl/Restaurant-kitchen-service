@@ -1,0 +1,105 @@
+{% load static %}
+<!-- Navbar -->
+<div class="container position-sticky z-index-sticky top-0">
+  <div class="row">
+    <div class="col-12">
+      <nav
+        class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+        <div class="container-fluid px-0 navbar-brand font-weight-bolder ms-sm-3">
+          <a class="navbar-brand font-weight-bolder ms-sm-3"
+            href="{% url 'kitchen:index' %}" rel="tooltip"
+            title="Designed and Coded by RomanDanyl" data-placement="bottom">
+            Kitchen system
+          </a>
+          <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon mt-2">
+              <span class="navbar-toggler-bar bar1"></span>
+              <span class="navbar-toggler-bar bar2"></span>
+              <span class="navbar-toggler-bar bar3"></span>
+            </span>
+          </button>
+          <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
+            <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
+              <li class="nav-item dropdown dropdown-hover mx-2">
+                <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                  href="javascript:;" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
+                  Pages
+                  <img src="{% static 'img/down-arrow-dark.svg' %}" alt="down-arrow" class="arrow ms-1">
+                </a>
+                <div class="dropdown-menu dropdown-menu-animation dropdown-md p-3 border-radius-lg mt-0 mt-lg-3"
+                  aria-labelledby="dropdownMenuPages">
+                  <div class="d-none d-lg-block">
+                    <a href="{% url 'kitchen:index' %}" class="dropdown-item border-radius-md">
+                      <span class="ps-3">Home</span>
+                    </a>
+                    <a href="{% url 'kitchen:cook-list' %}" class="dropdown-item border-radius-md">
+                      <span class="ps-3">All cooks</span>
+                    </a>
+                    <a href="{% url 'kitchen:dish-type-list' %}" class="dropdown-item border-radius-md">
+                      <span class="ps-3">All dish types</span>
+                    </a>
+                    <a href="{% url 'kitchen:dish-list' %}" class="dropdown-item border-radius-md">
+                      <span class="ps-3">All dishes</span>
+                    </a>
+                  </div>
+                  <div class="d-lg-none">
+                    <a href="{% url 'kitchen:index' %}" class="dropdown-item border-radius-md">
+                      <span class="ps-3">Home</span>
+                    </a>
+                    <a href="{% url 'kitchen:cook-list' %}" class="dropdown-item border-radius-md">
+                      <span class="ps-3">All cooks</span>
+                    </a>
+                    <a href="{% url 'kitchen:dish-type-list' %}" class="dropdown-item border-radius-md">
+                      <span class="ps-3">All dish types</span>
+                    </a>
+                    <a href="{% url 'kitchen:dish-list' %}" class="dropdown-item border-radius-md">
+                      <span class="ps-3">All dishes</span>
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              
+              {% if request.user.is_authenticated %}
+              <li class="nav-item ms-lg-auto">
+                <a class="nav-link nav-link-icon me-2" href="#" onclick="submitLogoutForm(); return false;">
+                  <i class="fa fa-sign-out me-1"></i>
+                  <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+                   data-bs-placement="bottom" title="Logout">Logout</p>
+                </a>
+                <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
+                  {% csrf_token %}
+                </form>
+              </li>
+
+              <script>
+                function submitLogoutForm() {
+                  document.getElementById('logout-form').submit();
+                }
+              </script>
+              <li class="nav-item my-auto ms-3 ms-lg-0">
+                <a href="{{ user.get_absolute_url }}" target="_blank"
+                  class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0">{{ user.get_username }}</a>
+              </li>
+              {% else %}
+              <li class="nav-item ms-lg-auto">
+                <a class="nav-link nav-link-icon me-2"
+                  href="{% url 'login' %}">
+                  <i class="fa fa-sign-in me-1"></i>
+                  <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="Login">Login</p>
+                </a>
+              </li>
+              {% endif %}
+
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+    </div>
+  </div>
+</div>

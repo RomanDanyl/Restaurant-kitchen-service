@@ -12,3 +12,7 @@ body {
     margin: 0 2px 0 2px;
     background-color: aqua;
 }
+
+.custom-mt-n10vw {
+    margin-top: -5vw;
+}

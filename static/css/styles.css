@@ -25,3 +25,8 @@ body {
 .custom-mb-5vw {
     margin-bottom: 5vw;
 }
+
+.custom-mt-10vw {
+    margin-top: 5vw;
+    padding-top: 5vw;
+}

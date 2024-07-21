@@ -22,7 +22,7 @@ class CookCreationFormTest(TestCase):
             price=10,
             dish_type=self.dish_type,
         )
-        self.dish1.cooks.set([self.cook])
+        self.cook.cooked_dishes.set([self.dish1])
         self.cook.specialties.set([self.dish_type])
 
     def test_cook_creation_form_with_specialties_and_cooked_dishes(self):

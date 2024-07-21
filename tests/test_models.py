@@ -2,14 +2,13 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
-from kitchen.models import DishType, Cook, Dish
+from kitchen.models import DishType, Dish
 
 USERNAME = "test"
 PASSWORD = "PASSWORD"
 FIRST_NAME = "test_first"
 LAST_NAME = "test_last"
 SPECIALTY_NAME = "test"
-LICENSE_NUMBER = "test_license_number"
 
 
 class ModelTests(TestCase):

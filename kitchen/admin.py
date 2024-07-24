@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from kitchen.models import Cook, Dish, DishType
+
+
+admin.site.register(Cook)
+
+admin.site.register(Dish)
+
+admin.site.register(DishType)

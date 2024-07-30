@@ -56,3 +56,12 @@ body {
         margin-top: -5vw
     }
 }
+
+@media (max-width: 500px) and (orientation: portrait) {
+    .custom-mt-n20vw {
+        margin-top: -80vw;
+    }
+    .custom-mt-n10vw {
+        margin-top: -30vw;
+    }
+}

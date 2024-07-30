@@ -9,12 +9,12 @@
 <header class="header-2">
   <div class="page-header min-vh-75 relative" style="background-image: url('{% static 'img/curved-images/bg1.jpg' %}')">
     <div class="container">
-        <div class="col-lg-7 mb-1 text-center mx-auto">
-          <h1 class="text-white pt-3 mt-n5">Dishes</h1>
-          {% block searching %}
-            {% include "includes/searching.html" %}
-          {% endblock %}
-        </div>
+      <div class="col-lg-7 mb-1 text-center mx-auto">
+        <h1 class="text-white pt-3">Dishes</h1>
+        {% block searching %}
+          {% include "includes/searching.html" %}
+        {% endblock %}
+      </div>
     </div>
 
     <div class="position-absolute w-100 z-index-1 bottom-0">
@@ -37,9 +37,7 @@
 
 <section class="pt-3 pb-4 custom-mt-n5vw z-index-2 position-relative">
   <div class="container">
-    
-  
-    <div class="row">
+    <div class="row mt-n5">
       {% for dish in dish_list %}  
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
           <div class="card border-radius-xl shadow-blur">

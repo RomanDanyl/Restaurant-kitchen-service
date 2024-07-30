@@ -22,6 +22,10 @@ body {
     padding-top: 5vw;
 }
 
+.custom-mt-n10vw {
+    margin-top: -10vw;
+}
+
 .custom-mb-5vw {
     margin-bottom: 5vw;
 }
@@ -37,4 +41,18 @@ body {
   max-width: 200px;
   max-height: 150px;
   overflow-y: auto;
+}
+
+.custom-page-header {
+    padding-top: 30vh;
+}
+
+.custom-mt-n10 {
+    margin-top: -30rem;
+}
+
+@media (max-width: 1000px) and (orientation: landscape) {
+    .custom-mt-n10vw {
+        margin-top: -5vw
+    }
 }

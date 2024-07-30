@@ -26,69 +26,71 @@
           <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
         </defs>
         <g class="moving-waves">
-          <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40" />
+          <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40)" />
           <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.35)" />
           <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.25)" />
           <use xlink:href="#gentle-wave" x="48" y="8" fill="rgba(255,255,255,0.20)" />
           <use xlink:href="#gentle-wave" x="48" y="13" fill="rgba(255,255,255,0.15)" />
-          <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(255,255,255,0.95" />
+          <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(255,255,255,0.95)" />
         </g>
       </svg>
     </div>
   </div>
 </header>
-  
+
 <section class="pt-3 pb-4" id="count-stats">
   <div class="container">
     <div class="row">
       <div class="col-lg-9 z-index-2 border-radius-xl mt-n10 mx-auto py-3 blur shadow-blur">
         <div class="row">
           {% if cook_list %}
-            <table class="table">
-              <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Specialties</th>
-                <th>Update</th>
-                <th>Delete</th>
-              </tr>
-
-              {% for cook in cook_list %}
+            <div class="table-responsive">
+              <table class="table">
                 <tr>
-                  <td>{{ cook.id }}</td>
-                  <td>
-                    <a href="{{ cook.get_absolute_url }}" class="link-info">{{ cook.username }}</a>{% if user == cook %} (Me){% endif %}
-                  </td>
-                  <td class="lead mb-0">
-                    {{ cook.first_name }}
-                  </td>
-                  <td class="lead mb-0">
-                    {{ cook.last_name }}
-                  </td>
-                  <td class="lead mb-0">
-                    {% if cook.specialties.all %}
-                      {% with cook.specialties.all as specialties %}
-                        {{ specialties|join:", " }}
-                      {% endwith %}
-                    {% else %}
-                      -
-                    {% endif %}
-                  </td>
-                  <td>
-                    <a href="{% url 'kitchen:cook-update' pk=cook.id %}" class="btn btn-secondary">
-                      Update
-                    </a>
-                  </td>
-                  <td>
-                    <a href="{% url 'kitchen:cook-delete' pk=cook.id %}" class="btn btn-danger">
-                      Delete
-                    </a>
-                  </td>
+                  <th>ID</th>
+                  <th>Username</th>
+                  <th>First name</th>
+                  <th>Last name</th>
+                  <th>Specialties</th>
+                  <th>Update</th>
+                  <th>Delete</th>
                 </tr>
-              {% endfor %}
-            </table>
+
+                {% for cook in cook_list %}
+                  <tr>
+                    <td>{{ cook.id }}</td>
+                    <td>
+                      <a href="{{ cook.get_absolute_url }}" class="link-info">{{ cook.username }}</a>{% if user == cook %} (Me){% endif %}
+                    </td>
+                    <td class="lead mb-0">
+                      {{ cook.first_name }}
+                    </td>
+                    <td class="lead mb-0">
+                      {{ cook.last_name }}
+                    </td>
+                    <td class="lead mb-0">
+                      {% if cook.specialties.all %}
+                        {% with cook.specialties.all as specialties %}
+                          {{ specialties|join:", " }}
+                        {% endwith %}
+                      {% else %}
+                        -
+                      {% endif %}
+                    </td>
+                    <td>
+                      <a href="{% url 'kitchen:cook-update' pk=cook.id %}" class="btn btn-secondary">
+                        Update
+                      </a>
+                    </td>
+                    <td>
+                      <a href="{% url 'kitchen:cook-delete' pk=cook.id %}" class="btn btn-danger">
+                        Delete
+                      </a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </table>
+            </div>
 
           {% else %}
             <p>There are no cooks</p>

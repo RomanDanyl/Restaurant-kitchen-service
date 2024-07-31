@@ -21,7 +21,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(dotenv_path=BASE_DIR / "sample.env")
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-!q6)klld4=&%7tq+9rr0px&-x@ht7n!wu_=#o0103m&b+$-$0w")
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "KiJghMtxDp356Qtk27KoiwnWYu-3rIfNEAzR67FSET6qjO2Fj-_ExR9WVuq2dN2UzjE")
+
+# HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# Redirect all HTTP to HTTPS
+SECURE_SSL_REDIRECT = True
+
+# Secure cookies
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 
 # Quick-start development settings - unsuitable for production

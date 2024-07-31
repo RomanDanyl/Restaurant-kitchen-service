@@ -44,6 +44,7 @@ DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
+    "restaurant-kitchen-service-0u9l.onrender.com",
 ]
 
 

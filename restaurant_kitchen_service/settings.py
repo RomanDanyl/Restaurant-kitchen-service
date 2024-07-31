@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(dotenv_path=BASE_DIR / "sample.env")
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "KiJghMtxDp356Qtk27KoiwnWYu-3rIfNEAzR67FSET6qjO2Fj-_ExR9WVuq2dN2UzjE")
+SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
 # HTTP Strict Transport Security (HSTS)
 SECURE_HSTS_SECONDS = 31536000

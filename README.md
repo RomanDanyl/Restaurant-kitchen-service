@@ -17,7 +17,7 @@ Restaurant Kitchen Service is a web-based application designed to streamline and
 
 - **Backend:** Python, Django
 - **Frontend:** HTML, CSS, JavaScript, Bootstrap
-- **Database:** Sqlite
+- **Database:** Sqlite, PostgreSQL
 - **Version Control:** Git
 
 ## DB Schema
